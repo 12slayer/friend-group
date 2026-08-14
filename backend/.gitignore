@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+
+# environment variables — never commit secrets
+.env
+.env.local
+.env.*.local
+
+# uploaded user content — shouldn't be committed, storage is deploy-specific
+uploads/
+
+# logs
+logs/
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# editor
+.vscode/
+.idea/
