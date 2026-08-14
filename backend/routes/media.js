@@ -5,7 +5,7 @@ import fs from "fs";
 import pool from "../config/db.js";
 import { protect } from "../middleware/auth.js";
 import { isAdmin } from "../middleware/Isadmin.js";
-import { optionalAuth } from "../middleware/optionalAuth.js";
+import { optionalAuth } from "../middleware/OptionalAuth.js";
 import { createNotification } from "../utils/createNotification.js";
 
 const router = express.Router();
