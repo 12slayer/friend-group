@@ -10,8 +10,8 @@ import mediaRoutes from "./routes/media.js";
 
 import http from "http";
 import { initSocket } from "./socket/index.js";
-import messageRoutes from "./routes/messages.routes.js";
-import notificationRoutes from "./routes/notifications.routes.js";
+import messageRoutes from "./routes/Messages.routes.js";
+import notificationRoutes from "./routes/Notifications.routes.js";
 
 dotenv.config();
 
