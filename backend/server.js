@@ -33,6 +33,11 @@ app.use("/api/profiles",profileRoutes);
 app.use("/api/media",mediaRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/notifications", notificationRoutes);
+app.get("/", (req, res) => {
+  res.json({
+    message: "Friend Group API is running",
+  });
+});
 
 
 const PORT = process.env.PORT || 5000;
