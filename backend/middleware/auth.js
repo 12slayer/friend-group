@@ -1,17 +1,24 @@
-import jwt, { decode } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import pool from "../config/db.js";
 
 export const protect = async (req, res, next) => {
   try {
-    const token = req.cookies.token;
-    console.log('token from cookies',req.cookies)
+    let token;
+
+    // Prefer Authorization header (Bearer token) — used by frontend localStorage-based auth
+    if (req.headers.authorization?.startsWith("Bearer ")) {
+      token = req.headers.authorization.split(" ")[1];
+    } else if (req.cookies?.token) {
+      // fallback for cookie-based flows
+      token = req.cookies.token;
+    }
+
     if (!token) {
       return res.status(401).json({ message: "Not authorized, no token" });
     }
 
-///today 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-console.log(decoded);
+
     const user = await pool.query(
       "SELECT id, name, email FROM users WHERE id = $1",
       [decoded.id]
@@ -30,4 +37,3 @@ console.log(decoded);
     res.status(401).json({ message: "Not authorized, token failed" });
   }
 };
-
