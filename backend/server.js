@@ -15,22 +15,22 @@ dotenv.config();
 
 const app = express();
 
-// // --- CORS CONFIG ---
-// const allowedOrigins = [
-//   "http://localhost:5173",
-//   "https://mellow-axolotl-982ea0.netlify.app",
-//   process.env.CLIENT_URL,
-// ].filter(Boolean);
+// --- CORS CONFIG ---
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://mellow-axolotl-982ea0.netlify.app",
+  process.env.CLIENT_URL,
+].filter(Boolean);
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      process.env.CLIENT_URL || "https://your-site-name.netlify.app",
-    ],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: [
+//       "http://localhost:5173",
+//       process.env.CLIENT_URL || "https://your-site-name.netlify.app",
+//     ],
+//     credentials: true,
+//   })
+// );
 
 const corsOptions = {
   origin: (origin, callback) => {
