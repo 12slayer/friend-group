@@ -13,10 +13,18 @@ function getTokenFromCookieHeader(cookieHeader) {
   return decodeURIComponent(match.split("=")[1]);
 }
 
-export function initSocket(httpServer) {
+export function initSocket(httpServer, allowedOrigins = ["http://localhost:5173"]) {
   io = new Server(httpServer, {
     cors: {
-      origin: "http://localhost:5173", // your Vite dev server
+      origin: (origin, callback) => {
+        // allow requests with no origin (mobile apps, curl, server-to-server, etc.)
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          console.log("Socket.IO blocked by CORS:", origin);
+          callback(new Error("Not allowed by CORS"));
+        }
+      },
       credentials: true,
     },
   });
@@ -26,7 +34,6 @@ export function initSocket(httpServer) {
     try {
       const token = getTokenFromCookieHeader(socket.handshake.headers.cookie);
       if (!token) return next(new Error("Unauthorized"));
-
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       socket.userId = decoded.id;
       next();
