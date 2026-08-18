@@ -13,7 +13,7 @@ function getTokenFromCookieHeader(cookieHeader) {
   return decodeURIComponent(match.split("=")[1]);
 }
 
-export function initSocket(httpServer, allowedOrigins = ["http://localhost:5173"]) {
+export function initSocket(httpServer, allowedOrigins = ["https://mellow-axolotl-982ea0.netlify.app/"]) {
   io = new Server(httpServer, {
     cors: {
       origin: (origin, callback) => {
