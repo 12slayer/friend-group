@@ -19,12 +19,11 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
   "https://mellow-axolotl-982ea0.netlify.app",
-  //process.env.CLIENT_URL, // optional extra override from env
-].filter(Boolean); // removes undefined if CLIENT_URL isn't set
+  process.env.CLIENT_URL,
+].filter(Boolean);
 
 const corsOptions = {
   origin: (origin, callback) => {
-    // allow requests with no origin (like curl, mobile apps, Postman)
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -36,7 +35,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // handle preflight requests explicitly
 
 app.use(express.json());
 app.use(cookieParser());
@@ -66,8 +64,6 @@ console.log({
 });
 
 const httpServer = http.createServer(app);
-
-// pass allowedOrigins to socket.io too — see note below
 initSocket(httpServer, allowedOrigins);
 
 httpServer.listen(PORT, () => console.log(`Server running on port ${PORT}`));
