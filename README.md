@@ -1,6 +1,6 @@
 # Friend Group
 
-A full-stack social app built on the PERN stack (PostgreSQL, Express, React, Node) with real-time features powered by Socket.IO. Friends share photos and videos, like and comment on posts, chat directly with each other, and get live notifications — all without any "friend request" step.
+A full-stack social app built on the PERN stack (PostgreSQL, Express, React, Node) with real-time features powered by Socket.IO. Friends share photos and videos, like and comment on posts, chat directly with each other, and get live notifications — all without any "friend request" step. https://mellow-axolotl-982ea0.netlify.app/---- live deploy
 
 ## Features
 
