@@ -19,7 +19,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
   "https://mellow-axolotl-982ea0.netlify.app",
-  process.env.CLIENT_URL, // optional extra override from env
+  //process.env.CLIENT_URL, // optional extra override from env
 ].filter(Boolean); // removes undefined if CLIENT_URL isn't set
 
 const corsOptions = {
