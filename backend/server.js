@@ -13,7 +13,7 @@ import notificationRoutes from "./routes/Notifications.routes.js";
 
 dotenv.config();
 
-// const app = express();
+const app = express();
 
 // // --- CORS CONFIG ---
 // const allowedOrigins = [
